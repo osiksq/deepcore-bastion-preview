@@ -79,8 +79,15 @@ test("published game opens the Lobby and starts Iron Crust", async ({ page }) =>
     page.getByRole("heading", { name: "Deepcore Bastion" })
   ).toBeVisible();
   await page.getByRole("button", { name: "Start Iron Crust" }).click();
-  await expect(page.getByText("IRON CRUST", { exact: true })).toBeVisible();
+  await expect(page.locator(".lobby-overlay")).toBeHidden();
+  const postStartErrors = await page.evaluate(() => {
+    const target = window as typeof window & {
+      __RUNTIME_ERRORS__?: unknown[];
+    };
+    return target.__RUNTIME_ERRORS__ ?? [];
+  });
   expect(runtime.runtimeErrors).toEqual([]);
+  expect(postStartErrors).toEqual([]);
   expect(
     messages.filter((message) => message.startsWith("[pageerror]"))
   ).toEqual([]);
