@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("published game creates a visible canvas", async ({ page }) => {
+test("published game opens the Lobby and starts Iron Crust", async ({ page }) => {
   await page.addInitScript(() => {
     const target = window as typeof window & {
       __RUNTIME_ERRORS__?: unknown[];
@@ -75,4 +75,13 @@ test("published game creates a visible canvas", async ({ page }) => {
   );
 
   await expect(page.locator("canvas")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Deepcore Bastion" })
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Start Iron Crust" }).click();
+  await expect(page.getByText("IRON CRUST", { exact: true })).toBeVisible();
+  expect(runtime.runtimeErrors).toEqual([]);
+  expect(
+    messages.filter((message) => message.startsWith("[pageerror]"))
+  ).toEqual([]);
 });
