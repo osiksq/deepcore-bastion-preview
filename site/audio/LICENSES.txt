@@ -1,3 +1,16 @@
+Original combat samples — Deepcore Bastion
+
+pulse-1/2/3, hit-1/2, armor-hit, death-1/2, missile-launch,
+explosion, saw-impact and arc-impact are original deterministic synthesis.
+They contain no external recordings or sample-pack material. Their recipes
+are stored in scripts/combat-synthesis.mjs and rendered offline through
+scripts/render-combat-sfx.mjs. LicenseRef-Original-Project in manifest.json
+identifies this project-origin material, not a third-party license grant.
+No external attribution obligation applies to these original samples.
+
+The retained interface, reward and warning cues use the Kenney sources below.
+See manifest.json for per-file provenance, processing and content hashes.
+
 Kenney Sci-Fi Sounds 1.0
 https://kenney.nl/assets/sci-fi-sounds
 	
